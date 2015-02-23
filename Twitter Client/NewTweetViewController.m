@@ -50,20 +50,10 @@ NSInteger const kMaxCharacterCount = 140;
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark - Private methods
 
 - (void)onCancelButton {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - UITextViewDelegate
-
-- (void)textViewDidChange:(UITextView *)textView {
-    NSInteger charactersLeft = kMaxCharacterCount - textView.text.length;
-    self.characterCountLabel.text = [@(charactersLeft) stringValue];
-    self.characterCountLabel.textColor = (charactersLeft >= 20) ? [UIColor lightGrayColor] : [UIColor redColor];
-    self.tweetButton.enabled = (charactersLeft >= 0) && (charactersLeft < kMaxCharacterCount);
 }
 
 - (IBAction)onTweet:(id)sender {

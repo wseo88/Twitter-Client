@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewTweetViewController">
+            <connections>
+                <outlet property="nameLabel" destination="rmb-kb-gmV" id="xek-BM-4bl"/>
+                <outlet property="profileImageView" destination="rAD-TS-vgf" id="ggm-5K-T6t"/>
+                <outlet property="screennameLabel" destination="5tU-wA-iqW" id="0Dh-V6-JRE"/>
+                <outlet property="tweetTextView" destination="ZIm-do-Vhl" id="XZ9-Fp-5v2"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rAD-TS-vgf">
+                    <rect key="frame" x="8" y="72" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="E0b-Qf-8M7"/>
+                        <constraint firstAttribute="height" constant="50" id="YHM-ay-bN7"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@screenname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tU-wA-iqW">
+                    <rect key="frame" x="66" y="99" width="168" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QpT-LM-Tfd">
+                    <rect key="frame" x="242" y="77" width="70" height="40"/>
+                    <color key="backgroundColor" red="0.33333333329999998" green="0.67450980390000004" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="V8g-uA-yiW"/>
+                        <constraint firstAttribute="width" constant="70" id="s76-GG-AI1"/>
+                    </constraints>
+                    <state key="normal" title="Tweet">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onTweet:" destination="-1" eventType="touchUpInside" id="gq9-3p-CET"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIm-do-Vhl">
+                    <rect key="frame" x="8" y="130" width="304" height="430"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmb-kb-gmV">
+                    <rect key="frame" x="66" y="77" width="168" height="18"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="rmb-kb-gmV" firstAttribute="leading" secondItem="rAD-TS-vgf" secondAttribute="trailing" constant="8" id="6dF-DD-5pS"/>
+                <constraint firstItem="ZIm-do-Vhl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="AKz-t5-LG3"/>
+                <constraint firstItem="QpT-LM-Tfd" firstAttribute="leading" secondItem="rmb-kb-gmV" secondAttribute="trailing" constant="8" id="Ab4-xv-cDd"/>
+                <constraint firstItem="5tU-wA-iqW" firstAttribute="top" secondItem="rmb-kb-gmV" secondAttribute="bottom" constant="4" id="C9V-2W-fFn"/>
+                <constraint firstItem="5tU-wA-iqW" firstAttribute="top" secondItem="rmb-kb-gmV" secondAttribute="bottom" constant="4" id="CkL-9U-cZ1"/>
+                <constraint firstAttribute="bottom" secondItem="ZIm-do-Vhl" secondAttribute="bottom" constant="8" id="Gh9-Yt-Z8U"/>
+                <constraint firstItem="QpT-LM-Tfd" firstAttribute="leading" secondItem="rmb-kb-gmV" secondAttribute="trailing" constant="8" id="J7u-V2-Cdu"/>
+                <constraint firstAttribute="trailing" secondItem="ZIm-do-Vhl" secondAttribute="trailing" constant="8" id="Jgp-Tv-CtJ"/>
+                <constraint firstAttribute="trailing" secondItem="QpT-LM-Tfd" secondAttribute="trailing" constant="8" id="RDR-g6-LUv"/>
+                <constraint firstItem="ZIm-do-Vhl" firstAttribute="top" secondItem="rAD-TS-vgf" secondAttribute="bottom" constant="8" id="S0L-I8-gBb"/>
+                <constraint firstItem="rmb-kb-gmV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="77" id="WLk-Ox-5DB"/>
+                <constraint firstItem="rAD-TS-vgf" firstAttribute="centerY" secondItem="QpT-LM-Tfd" secondAttribute="centerY" id="cP3-1b-AZQ"/>
+                <constraint firstItem="rAD-TS-vgf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="eRY-KR-4Ya"/>
+                <constraint firstItem="QpT-LM-Tfd" firstAttribute="leading" secondItem="5tU-wA-iqW" secondAttribute="trailing" constant="8" id="prz-Wo-FRl"/>
+                <constraint firstItem="rAD-TS-vgf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="qga-Ya-4RD"/>
+                <constraint firstItem="5tU-wA-iqW" firstAttribute="leading" secondItem="rAD-TS-vgf" secondAttribute="trailing" constant="8" id="u3i-pM-OFN"/>
+            </constraints>
+            <point key="canvasLocation" x="260" y="341"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

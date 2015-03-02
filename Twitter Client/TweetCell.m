@@ -12,7 +12,10 @@
 @implementation TweetCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapProfileImage:)];
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    self.profileImageView.userInteractionEnabled = YES;
+    [self.profileImageView addGestureRecognizer:tapGestureRecognizer];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -27,6 +30,10 @@
     self.screennameLabel.text = [NSString stringWithFormat:@"@%@", _tweet.user.screenname];
     self.createdAtLabel.text = [_tweet getCreatedAtTimeInterval];
     self.tweetTextLabel.text = _tweet.text;
+}
+
+- (void)onTapProfileImage:(UIGestureRecognizer *)gestureRecognizer {
+    [self.delegate didTapProfileImage:self.tweet.user];
 }
 
 @end

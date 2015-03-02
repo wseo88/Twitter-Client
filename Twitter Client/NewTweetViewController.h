@@ -30,6 +30,6 @@ extern NSInteger const kMaxCharacterCount;
 @property (nonatomic, strong) User *user;
 @property (nonatomic, strong) Tweet *replyTargetTweet;
 
-@property (nonatomic, weak) id<NewTweetViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <NewTweetViewControllerDelegate> delegate;
 
 @end

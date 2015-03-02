@@ -13,8 +13,11 @@
 #import "TweetCell.h"
 #import "NewTweetViewController.h"
 #import "TweetDetailsViewController.h"
+#import "ProfileViewController.h"
+#import "MenuViewController.h"
+#import "ParentViewController.h"
 
-@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, NewTweetViewControllerDelegate>
+@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, NewTweetViewControllerDelegate, TweetCellDelegate, MenuViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *tweets;
 @property (nonatomic, strong) User *currentUser;
@@ -23,6 +26,7 @@
 @end
 
 @implementation TweetsViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,10 +49,12 @@
     [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:1];
     
+    /*
     [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
         self.tweets = [[NSMutableArray alloc] initWithArray:tweets];
         [self.tableView reloadData];
-    }];
+    }];*/
+    [self loadTweets];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,6 +86,14 @@
     [self.refreshControl endRefreshing];
 }
 
+- (void)loadMentions {
+    [[TwitterClient sharedInstance] getMentions:nil completion:^(NSArray *tweets, NSError *error) {
+        self.tweets = [[NSMutableArray alloc] initWithArray:tweets];
+        [self.tableView reloadData];
+    }];
+    [self.refreshControl endRefreshing];
+}
+
 #pragma mark - Table Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -89,6 +103,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     cell.tweet = self.tweets[indexPath.row];
+    cell.delegate = self;
     [cell.tweet getCreatedAtTimeInterval];
     return cell;
 }
@@ -115,14 +130,31 @@
     [self.tableView reloadData];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)didTapProfileImage:(User *)user {
+    ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
+    profileViewController.user = user;
+    [self.navigationController pushViewController:profileViewController animated:YES];
 }
-*/
+
+- (void)didSelectMenuItem:(NSInteger)selectedRow {
+    switch (selectedRow) {
+        case 1: {
+            [self didTapProfileImage:[User currentUser]];
+            break;
+        }
+        case 2: {
+            [self loadTweets];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            break;
+        }
+        case 3: {
+            [self loadMentions];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            break;
+        }
+        default:
+            break;
+    }
+}
 
 @end

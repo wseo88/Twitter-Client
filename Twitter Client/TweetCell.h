@@ -8,10 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
+#import "User.h"
+
+@class TweetCell;
+
+@protocol TweetCellDelegate <NSObject>
+
+- (void)didTapProfileImage:(User *)user;
+
+@end
 
 @interface TweetCell : UITableViewCell
 
 @property (nonatomic, strong) Tweet *tweet;
+@property (nonatomic, weak) id <TweetCellDelegate> delegate;
+
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *screennameLabel;

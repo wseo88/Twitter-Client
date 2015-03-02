@@ -18,6 +18,7 @@
 - (void)openURL:(NSURL *)url;
 
 - (void)homeTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion;
+- (void)getMentions:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion;
 - (void)composeNewTweet:(NSDictionary *)params completion:(void (^)(Tweet *tweet, NSError *error))completion;
 
 @end

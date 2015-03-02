@@ -12,17 +12,24 @@
 #import "User.h"
 #import "Tweet.h"
 #import "TweetsViewController.h"
+#import "ParentViewController.h"
+#import "MenuViewController.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) LoginViewController *loginViewController;
+@property (nonatomic, strong) ParentViewController *pvc;
+@property (nonatomic, strong) MenuViewController *menuViewController;
 
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
@@ -32,11 +39,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:UserDidLogoutNotification object:nil];
     
     User *user = [User currentUser];
-    
-    self.window.backgroundColor = [UIColor whiteColor];
+    [self initLoginViewController];
+    [self initParentViewController];
+
     if (user != nil) {
-        //NSLog(@"Welcome %@", user.name);
-        self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
+        self.window.rootViewController = self.pvc;
     } else {
         NSLog(@"Not logged in");
         self.window.rootViewController = [[LoginViewController alloc] init];
@@ -44,6 +51,24 @@
 
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)initLoginViewController {
+    if (!self.loginViewController) {
+        self.loginViewController = [[LoginViewController alloc] init];
+    } else {
+        // Do nothing
+    }
+}
+
+- (void)initParentViewController {
+    TweetsViewController *tweetsViewController = [[TweetsViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:tweetsViewController];
+    navigationController.navigationBar.translucent = NO;
+    self.pvc = [[ParentViewController alloc] initWithMainViewController:navigationController];
+    self.menuViewController = [[MenuViewController alloc] init];
+    self.menuViewController.delegate = tweetsViewController;
+    self.pvc.menuViewController = self.menuViewController;
 }
 
 - (void)userDidLogout {
